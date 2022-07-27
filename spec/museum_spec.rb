@@ -91,7 +91,6 @@ RSpec.describe do
     it 'can draw lotto winner' do
       expect(["Bob", "Johnny"].include?(@dmns.draw_lottery_winner(@dead_sea_scrolls))).to eq(true)
       expect(@dmns.draw_lottery_winner(@imax)).to eq(nil)
-      @dmns.visit(@patron_1)
     end
 
     it 'can announce lotto winner' do
