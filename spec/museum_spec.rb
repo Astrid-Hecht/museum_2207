@@ -84,20 +84,20 @@ RSpec.describe do
       expect(@dmns.patrons_by_exhibit_interest).to eq({ @gems_and_minerals => [@patron_1], @dead_sea_scrolls => [@patron_1, @patron_2, @patron_3], @imax => [] })
     end
 
-    xit 'can find lotto contestants' do
+    it 'can find lotto contestants' do
       expect(@dmns.ticket_lottery_contestants(@dead_sea_scrolls)).to eq([@patron_1, @patron_3])
     end
 
-    xit 'can draw lotto winner' do
+    it 'can draw lotto winner' do
       expect(["Bob", "Johnny"].include?(@dmns.draw_lottery_winner(@dead_sea_scrolls))).to eq(true)
-      expect(@dmns.draw_lottery_winner(@dead_sea_scrolls)).to eq(nil)
+      expect(@dmns.draw_lottery_winner(@imax)).to eq(nil)
     end
 
-    xit 'can announce lotto winner' do
-      possibilities = ["Bob has won the IMAX exhibit lottery", "Johnny has won the IMAX exhibit lottery"]
-      expect(possibilities.include?(@dmns.draw_lottery_winner(@imax))).to eq(true)
+    it 'can announce lotto winner' do
+      possibilities = ["Bob has won the Dead Sea Scrolls exhibit lottery", "Johnny has won the Dead Sea Scrolls exhibit lottery"]
+      expect(possibilities.include?(@dmns.announce_lottery_winner(@dead_sea_scrolls))).to eq(true)
 
-      expect(@dmns.announce_lottery_winner(gems_and_minerals)).to eq("No winners for this lottery")
+      expect(@dmns.announce_lottery_winner(@imax)).to eq("No winners for this lottery")
     end
   end
 end
