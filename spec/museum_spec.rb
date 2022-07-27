@@ -70,6 +70,10 @@ RSpec.describe do
 
       @patron_3 = Patron.new("Johnny", 5)
       @patron_3.add_interest("Dead Sea Scrolls")
+
+      @dmns.admit(@patron_1)
+      @dmns.admit(@patron_2)
+      @dmns.admit(@patron_3)
     end
 
     it 'can admit patrons' do
@@ -80,16 +84,16 @@ RSpec.describe do
       expect(@dmns.patrons_by_exhibit_interest).to eq({ @gems_and_minerals => [@patron_1], @dead_sea_scrolls => [@patron_1, @patron_2, @patron_3], @imax => [] })
     end
 
-    it 'can find lotto contestants' do
+    xit 'can find lotto contestants' do
       expect(@dmns.ticket_lottery_contestants(@dead_sea_scrolls)).to eq([@patron_1, @patron_3])
     end
 
-    it 'can draw lotto winner' do
+    xit 'can draw lotto winner' do
       expect(["Bob", "Johnny"].include?(@dmns.draw_lottery_winner(@dead_sea_scrolls))).to eq(true)
       expect(@dmns.draw_lottery_winner(@dead_sea_scrolls)).to eq(nil)
     end
 
-    it 'can announce lotto winner' do
+    xit 'can announce lotto winner' do
       possibilities = ["Bob has won the IMAX exhibit lottery", "Johnny has won the IMAX exhibit lottery"]
       expect(possibilities.include?(@dmns.draw_lottery_winner(@imax))).to eq(true)
 
